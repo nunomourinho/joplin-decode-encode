@@ -25,6 +25,14 @@ jobs:
       run: |
         npm install
 
+    - name: Instalar Dependências
+      run: npm ci
+
+    - name: Limpar e Instalar Dependências
+      run: |
+        rm -rf node_modules package-lock.json
+        npm install
+
     - name: Build Plugin
       run: |
         npm run dist
