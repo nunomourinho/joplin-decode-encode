@@ -24,14 +24,7 @@ jobs:
     - name: Install Dependencies
       run: |
         npm install
-
-    - name: Instalar Dependências
-      run: npm ci
-
-    - name: Limpar e Instalar Dependências
-      run: |
-        rm -rf node_modules package-lock.json
-        npm install
+        npm install --save-dev @joplin/plugin-api @types/crypto-js
 
     - name: Build Plugin
       run: |
@@ -39,7 +32,8 @@ jobs:
 
     - name: Package Joplin Plugin (.jpl)
       run: |
-        npx joplin plugin pack .
+        npm install -g @joplin/tools
+        joplin plugin pack .
         mkdir -p artifacts
         mv *.jpl artifacts/
 
@@ -49,9 +43,4 @@ jobs:
         name: joplin-plugin
         path: artifacts/*.jpl
 
-    - name: Carregar Artefacto
-      uses: actions/upload-artifact@v4
-      with:
-        name: plugin-joplin
-        path: dist/
 
