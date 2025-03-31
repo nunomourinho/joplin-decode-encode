@@ -13,33 +13,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
 
-      - name: Install Dependencies
-        run: |
-          npm install
-          npm install --save-dev @joplin/lib @types/crypto-js
+    - name: Install Dependencies
+      run: |
+        npm install
+        npm install --save-dev @joplin/plugin-api @types/crypto-js
 
-      - name: Build Plugin
-        run: npm run dist
+    - name: Build Plugin
+      run: |
+        npm run dist
 
-      - name: Install Joplin Tools & Package Plugin
-        run: |
-          npm install -g @joplin/tools
-          joplin plugin pack .
-          mkdir -p artifacts
-          mv *.jpl artifacts/
+    - name: Package Joplin Plugin (.jpl)
+      run: |
+        npm install -g @joplin/tools
+        joplin plugin pack .
+        mkdir -p artifacts
+        mv *.jpl artifacts/
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: joplin-plugin
-          path: artifacts/*.jpl
-
-
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: joplin-plugin
+        path: artifacts/*.jpl
