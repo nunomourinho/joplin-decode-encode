@@ -11,7 +11,7 @@
   "license": "MIT",
   "devDependencies": {
     "@joplin/lib": "^2.12.1",
-    "@types/crypto-js": "^4.2.1",
+    "@types/crypto-js": "^4.0.0",    
     "@types/node": "^14.0.0",
     "copy-webpack-plugin": "^9.1.0",
     "ts-loader": "^9.2.6",
@@ -20,7 +20,8 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "crypto-js": "^4.1.1"
+    "crypto-js": "^4.1.1",
+    "@joplin/plugin-api": "^1.0.0"
   },
   "manifest_version": 1
 }
