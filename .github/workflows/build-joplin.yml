@@ -24,7 +24,7 @@ jobs:
     - name: Install Dependencies
       run: |
         npm install
-        npm install --save-dev @joplin/plugin-api @types/crypto-js
+        npm install --save-dev @joplin/plugin-api @types/crypto-js || npm install --save-dev https://github.com/laurent22/joplin.git#packages/plugin/api
 
     - name: Build Plugin
       run: |
@@ -38,6 +38,10 @@ jobs:
         mv *.jpl artifacts/
 
     - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: joplin-plugin
+        path: artifacts/*.jpl
       uses: actions/upload-artifact@v4
       with:
         name: joplin-plugin
