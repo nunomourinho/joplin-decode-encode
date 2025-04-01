@@ -42,7 +42,3 @@ jobs:
       with:
         name: joplin-plugin
         path: artifacts/*.jpl
-      uses: actions/upload-artifact@v4
-      with:
-        name: joplin-plugin
-        path: artifacts/*.jpl
